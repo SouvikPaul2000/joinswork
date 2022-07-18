@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from Joins import app
+from src import app
 import pymysql
 from dotenv import load_dotenv
 import os
@@ -12,12 +12,12 @@ import MySQLdb
 # print(os.getenv('password')) 
 # print(f"mysql://root:{os.getenv('password')}@localhost/{os.getenv('database')}")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{os.getenv('password')}@localhost/{os.getenv('database')}"
-#app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Souvik@localhost/database4"
+# app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{os.getenv('password')}@localhost/{os.getenv('database')}"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Souvik@souviksql/database4"
 #print(app.config['SQLALCHEMY_DATABASE_URI'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
  
- 
+
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
  

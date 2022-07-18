@@ -1,12 +1,15 @@
 from flask import Flask, request, jsonify
-from Joins import app
-from Joins.models import Employee
-from Joins.models import Department
-from Joins.models import db, post_schema, posts_schema
+from src import app
+from src.models import Employee
+from src.models import Department
+from src.models import db, post_schema, posts_schema
 
 
 
+@app.route('/')
+def index():
 
+    return "Docker Api"
 
 
 @app.route('/postD', methods = ['POST'])

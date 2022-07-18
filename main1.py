@@ -1,5 +1,5 @@
-from Joins import app
-from Joins.models import db, post_schema,posts_schema
+from src import app
+from src.models import db, post_schema,posts_schema
 import os
         
 if __name__ == '__main__':
