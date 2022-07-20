@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapi
+  labels:
+    app: myapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapi
+  template:
+    metadata:
+      labels:
+        app: myapi
+    spec:
+      containers:
+      - name: myapi
+        image: ghcr.io/souvikpaul2000/myapi:7
+        env:   # Setting Enviornmental Variables
+          - name: HOST_NAME   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: mysqlconfig  # name of configMap
+                key: host
+          - name: DBNAME  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: mysqlconfig 
+                key: name
+          - name: MYSQL_ROOT_USERNAME  # Setting Database username from Secret
+            valueFrom:
+              secretKeyRef:
+                name: mysqlsecrets # Secret Name
+                key: username
+          - name: MYSQL_ROOT_PASSWORD # Setting Database password from Secret
+            valueFrom:
+              secretKeyRef:
+                name: mysqlsecrets
+                key: password     
+        
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
+      

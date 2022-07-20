@@ -12,8 +12,9 @@ import MySQLdb
 # print(os.getenv('password')) 
 # print(f"mysql://root:{os.getenv('password')}@localhost/{os.getenv('database')}")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{os.getenv('password')}@localhost/{os.getenv('database')}"
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Souvik@souviksql/database4"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://{}:{}@{}/{}".format(os.getenv('MYSQL_ROOT_USERNAME'),os.getenv('MYSQL_ROOT_PASSWORD'),os.getenv('HOST_NAME'), os.getenv('DBNAME'))
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Souvik@localhost/database4"
 #print(app.config['SQLALCHEMY_DATABASE_URI'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
  
